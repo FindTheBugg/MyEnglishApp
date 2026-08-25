@@ -16,13 +16,31 @@ class MainActivity : AppCompatActivity() {
     fun returnRandomNumberWord(): Int {
         return Random.nextInt(0,9)
     }
+
+    val randomValueForWords = returnRandomNumberWord()
     fun setupWordsAndAnswers() {
-        val randomValueForWords = returnRandomNumberWord()
+
         binding.tvMainWord.text = questions[randomValueForWords].englishWord
         binding.tvFirstVariantAnswer.text = questions[randomValueForWords].answers[0]
         binding.tvTwosVariantAnswer.text = questions[randomValueForWords].answers[1]
         binding.tvThirdVariantAnswer.text = questions[randomValueForWords].answers[2]
         binding.tvFourVariantAnswer.text = questions[randomValueForWords].answers[3]
+    }
+
+    fun chooseRightAnswer() {
+        val firstTvValue = binding.tvFirstVariantAnswer.text.toString()
+        val twoTvValue = binding.tvTwosVariantAnswer.text.toString()
+        val thirdTvValue = binding.tvThirdVariantAnswer.text.toString()
+        val fourTvValue = binding.tvFourVariantAnswer.text.toString()
+        val correctAnswerIndex = questions[randomValueForWords].correctAnswerIndex
+        val correctAnswer = questions[randomValueForWords].answers[correctAnswerIndex]
+        when (correctAnswer) {
+            firstTvValue -> makeCorrectAnswer()
+            twoTvValue -> makeCorrectAnswer()
+            thirdTvValue -> makeCorrectAnswer()
+            fourTvValue -> makeCorrectAnswer()
+            else -> finish()
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,7 +50,16 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         setupWordsAndAnswers()
         binding.lcFirstcontainer.setOnClickListener {
-            makeCorrectAnswer()
+            chooseRightAnswer()
+        }
+        binding.lcTwoscontainer.setOnClickListener {
+            chooseRightAnswer()
+        }
+        binding.lcThirdcontainer.setOnClickListener {
+            chooseRightAnswer()
+        }
+        binding.lcFourcontainer.setOnClickListener {
+            chooseRightAnswer()
         }
         binding.btExitButton.setOnClickListener {
             finish()
