@@ -16,15 +16,22 @@ class MainActivity : AppCompatActivity() {
     fun returnRandomNumberWord(): Int {
         return Random.nextInt(0,9)
     }
-
     val randomValueForWords = returnRandomNumberWord()
     fun setupWordsAndAnswers() {
-
         binding.tvMainWord.text = questions[randomValueForWords].englishWord
         binding.tvFirstVariantAnswer.text = questions[randomValueForWords].answers[0]
         binding.tvTwosVariantAnswer.text = questions[randomValueForWords].answers[1]
         binding.tvThirdVariantAnswer.text = questions[randomValueForWords].answers[2]
         binding.tvFourVariantAnswer.text = questions[randomValueForWords].answers[3]
+    }
+
+    fun updateRandomValue() {
+        val updateRandomValueForWords = returnRandomNumberWord()
+        binding.tvMainWord.text = questions[updateRandomValueForWords].englishWord
+        binding.tvFirstVariantAnswer.text = questions[updateRandomValueForWords].answers[0]
+        binding.tvTwosVariantAnswer.text = questions[updateRandomValueForWords].answers[1]
+        binding.tvThirdVariantAnswer.text = questions[updateRandomValueForWords].answers[2]
+        binding.tvFourVariantAnswer.text = questions[updateRandomValueForWords].answers[3]
     }
 
     fun chooseRightAnswer() {
@@ -70,8 +77,8 @@ class MainActivity : AppCompatActivity() {
         }
         binding.continueButton.setOnClickListener {
             returnDefaultConditionElements()
-            returnRandomNumberWord()
-            setupWordsAndAnswers()
+//            returnRandomNumberWord()
+            updateRandomValue()
         }
     }
 
