@@ -3,14 +3,14 @@ plugins {
 }
 
 android {
-    namespace = "com.example.myenglishapp"
+    namespace = "com.example.englishapp"
     compileSdk {
         version = release(37)
     }
 
     defaultConfig {
-        applicationId = "com.example.myenglishapp"
-        minSdk = 24
+        applicationId = "com.example.englishapp"
+        minSdk = 28
         targetSdk = 37
         versionCode = 1
         versionName = "1.0"
@@ -29,6 +29,11 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
+
 }
 
 dependencies {
