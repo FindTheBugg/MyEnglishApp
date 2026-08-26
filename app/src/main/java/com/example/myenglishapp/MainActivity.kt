@@ -14,39 +14,37 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLearnWordBinding
     fun returnRandomNumberWord(): Int {
-        return Random.nextInt(0,9)
+        return Random.nextInt(questions.size)
     }
-    val randomValueForWords = returnRandomNumberWord()
+    private var randomValueForWords = returnRandomNumberWord()
     fun setupWordsAndAnswers() {
+
+        val question = questions[randomValueForWords]
+
         binding.tvMainWord.text = questions[randomValueForWords].englishWord
+
         binding.tvFirstVariantAnswer.text = questions[randomValueForWords].answers[0]
         binding.tvTwosVariantAnswer.text = questions[randomValueForWords].answers[1]
         binding.tvThirdVariantAnswer.text = questions[randomValueForWords].answers[2]
         binding.tvFourVariantAnswer.text = questions[randomValueForWords].answers[3]
     }
 
-    fun updateRandomValue() {
-        val updateRandomValueForWords = returnRandomNumberWord()
-        binding.tvMainWord.text = questions[updateRandomValueForWords].englishWord
-        binding.tvFirstVariantAnswer.text = questions[updateRandomValueForWords].answers[0]
-        binding.tvTwosVariantAnswer.text = questions[updateRandomValueForWords].answers[1]
-        binding.tvThirdVariantAnswer.text = questions[updateRandomValueForWords].answers[2]
-        binding.tvFourVariantAnswer.text = questions[updateRandomValueForWords].answers[3]
+    private fun showNextQuestion() {
+        randomValueForWords = returnRandomNumberWord()
+        returnDefaultConditionElements()
+        setupWordsAndAnswers()
     }
 
-    fun chooseRightAnswer() {
-        val firstTvValue = binding.tvFirstVariantAnswer.text.toString()
-        val twoTvValue = binding.tvTwosVariantAnswer.text.toString()
-        val thirdTvValue = binding.tvThirdVariantAnswer.text.toString()
-        val fourTvValue = binding.tvFourVariantAnswer.text.toString()
-        val correctAnswerIndex = questions[randomValueForWords].correctAnswerIndex
-        val correctAnswer = questions[randomValueForWords].answers[correctAnswerIndex]
-        when (correctAnswer) {
-            firstTvValue -> makeCorrectAnswer()
-            twoTvValue -> makeCorrectAnswer()
-            thirdTvValue -> makeCorrectAnswer()
-            fourTvValue -> makeCorrectAnswer()
-            else -> finish()
+    fun chooseRightAnswer(selectedAnswerIndex: Int) {
+        questions[randomValueForWords].correctAnswerIndex
+
+        val correctAnswerIndex =
+            questions[randomValueForWords].correctAnswerIndex
+
+        if (selectedAnswerIndex == correctAnswerIndex) {
+            makeCorrectAnswer(selectedAnswerIndex)
+        } else {
+            finish()
         }
     }
 
@@ -57,28 +55,25 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         setupWordsAndAnswers()
         binding.lcFirstcontainer.setOnClickListener {
-            chooseRightAnswer()
+            chooseRightAnswer(0)
         }
         binding.lcTwoscontainer.setOnClickListener {
-            chooseRightAnswer()
+            chooseRightAnswer(1)
         }
         binding.lcThirdcontainer.setOnClickListener {
-            chooseRightAnswer()
+            chooseRightAnswer(2)
         }
         binding.lcFourcontainer.setOnClickListener {
-            chooseRightAnswer()
+            chooseRightAnswer(3)
         }
         binding.btExitButton.setOnClickListener {
             finish()
         }
         binding.skipButton.setOnClickListener {
-            returnRandomNumberWord()
-            setupWordsAndAnswers()
+            showNextQuestion()
         }
         binding.continueButton.setOnClickListener {
-            returnDefaultConditionElements()
-//            returnRandomNumberWord()
-            updateRandomValue()
+            showNextQuestion()
         }
     }
 
@@ -137,30 +132,59 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private fun makeCorrectAnswer() {
-        binding.lcFirstcontainer.background = ContextCompat.getDrawable(
+    private fun makeCorrectAnswer(index: Int) {
+
+        val containers = listOf(
+            binding.lcFirstcontainer,
+            binding.lcTwoscontainer,
+            binding.lcThirdcontainer,
+            binding.lcFourcontainer
+        )
+
+        val textViewsNumbers = listOf(
+            binding.tvFirstNumberAnswer,
+            binding.tvTwosNumberAnswer,
+            binding.tvThirdNumberAnswer,
+            binding.tvFourNumberAnswer
+        )
+
+        val textViewsAnswers = listOf(
+            binding.tvFirstVariantAnswer,
+            binding.tvTwosVariantAnswer,
+            binding.tvThirdVariantAnswer,
+            binding.tvFourVariantAnswer
+        )
+
+        val container = containers[index]
+        val textviewAnswer = textViewsNumbers[index]
+        val textViewNumber = textViewsNumbers[index]
+
+        container.background = ContextCompat.getDrawable(
             this@MainActivity,
             R.drawable.succes_shape_rounded_containers
         )
-        binding.tvFirstNumberAnswer.background = ContextCompat.getDrawable(
+        textViewNumber.background = ContextCompat.getDrawable(
             this@MainActivity,
             R.drawable.succes_shape_rounded_variants
         )
-        binding.tvFirstNumberAnswer.setTextColor(
+        textViewNumber.setTextColor(
             ContextCompat.getColor(
                 this@MainActivity,
                 R.color.white
             )
         )
-        binding.tvFirstVariantAnswer.setTextColor(
-            ContextCompat.getColor(
-                this@MainActivity,
-                R.color.correctAnswer
-            )
-        )
         binding.correctAnswerContainer.isVisible = true
+        }
+
+    
+
+
+
+
+
     }
-}
+
+
 
 
 
