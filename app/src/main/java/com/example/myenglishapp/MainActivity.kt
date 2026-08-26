@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         if (selectedAnswerIndex == correctAnswerIndex) {
             makeCorrectAnswer(selectedAnswerIndex)
         } else {
-            finish()
+            makeWrongAnswer(correctAnswerIndex, selectedAnswerIndex)
         }
     }
 
@@ -73,6 +73,9 @@ class MainActivity : AppCompatActivity() {
             showNextQuestion()
         }
         binding.continueButton.setOnClickListener {
+            showNextQuestion()
+        }
+        binding.wrongContinueButton.setOnClickListener {
             showNextQuestion()
         }
     }
@@ -129,12 +132,13 @@ class MainActivity : AppCompatActivity() {
 
         }
         binding.correctAnswerContainer.isVisible = false
+        binding.wrongContainer.isVisible = false
     }
 
 
-    private fun makeCorrectAnswer(index: Int) {
+    private fun makeCorrectAnswer(correctIndex: Int) {
 
-        val containers = listOf(
+        val correctContainers = listOf(
             binding.lcFirstcontainer,
             binding.lcTwoscontainer,
             binding.lcThirdcontainer,
@@ -148,16 +152,8 @@ class MainActivity : AppCompatActivity() {
             binding.tvFourNumberAnswer
         )
 
-        val textViewsAnswers = listOf(
-            binding.tvFirstVariantAnswer,
-            binding.tvTwosVariantAnswer,
-            binding.tvThirdVariantAnswer,
-            binding.tvFourVariantAnswer
-        )
-
-        val container = containers[index]
-        val textviewAnswer = textViewsNumbers[index]
-        val textViewNumber = textViewsNumbers[index]
+        val container = correctContainers[correctIndex]
+        val textViewNumber = textViewsNumbers[correctIndex]
 
         container.background = ContextCompat.getDrawable(
             this@MainActivity,
@@ -176,13 +172,76 @@ class MainActivity : AppCompatActivity() {
         binding.correctAnswerContainer.isVisible = true
         }
 
-    
+    private fun makeWrongAnswer(correctIndex: Int, selectedAnswerIndex: Int) {
 
 
+        val correctContainers = listOf(
+            binding.lcFirstcontainer,
+            binding.lcTwoscontainer,
+            binding.lcThirdcontainer,
+            binding.lcFourcontainer
+        )
 
+        val textViewsNumbers = listOf(
+            binding.tvFirstNumberAnswer,
+            binding.tvTwosNumberAnswer,
+            binding.tvThirdNumberAnswer,
+            binding.tvFourNumberAnswer
+        )
 
+        val container = correctContainers[correctIndex]
+        val textViewNumber = textViewsNumbers[correctIndex]
 
+        container.background = ContextCompat.getDrawable(
+            this@MainActivity,
+            R.drawable.succes_shape_rounded_containers
+        )
+        textViewNumber.background = ContextCompat.getDrawable(
+            this@MainActivity,
+            R.drawable.succes_shape_rounded_variants
+        )
+        textViewNumber.setTextColor(
+            ContextCompat.getColor(
+                this@MainActivity,
+                R.color.white
+            )
+        )
+
+        val wrongContainers = listOf(
+            binding.lcFirstcontainer,
+            binding.lcTwoscontainer,
+            binding.lcThirdcontainer,
+            binding.lcFourcontainer
+        )
+
+        val wrongTextViewsNumbers = listOf(
+            binding.tvFirstNumberAnswer,
+            binding.tvTwosNumberAnswer,
+            binding.tvThirdNumberAnswer,
+            binding.tvFourNumberAnswer
+        )
+
+        val wrongContainer = wrongContainers[selectedAnswerIndex]
+        val wrongTextViewNumber = wrongTextViewsNumbers[selectedAnswerIndex]
+
+        wrongContainer.background = ContextCompat.getDrawable(
+            this@MainActivity,
+            R.drawable.wrong_shape_rounded_containers
+        )
+        wrongTextViewNumber.background = ContextCompat.getDrawable(
+            this@MainActivity,
+            R.drawable.wrong_shape_rounded_variants
+        )
+        wrongTextViewNumber.setTextColor(
+            ContextCompat.getColor(
+                this@MainActivity,
+                R.color.white
+            )
+        )
+        binding.wrongContainer.isVisible = true
     }
+
+}
 
 
 
