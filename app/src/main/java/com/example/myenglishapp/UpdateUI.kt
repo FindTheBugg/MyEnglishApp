@@ -7,11 +7,12 @@ import com.example.englishapp.R
 import com.example.englishapp.databinding.ActivityLearnWordBinding
 
 
-class UpdateUI (
-     var context: Context,
-     var binding: ActivityLearnWordBinding ) {
+class UpdateUI(
+    var context: Context,
+    var binding: ActivityLearnWordBinding
+) {
 
-     fun returnDefaultConditionElements() {
+    fun returnDefaultConditionElements() {
 
         with(binding) {
 
@@ -19,7 +20,8 @@ class UpdateUI (
                 lcFirstcontainer,
                 lcTwoscontainer,
                 lcThirdcontainer,
-                lcFourcontainer)) {
+                lcFourcontainer
+            )) {
                 layout.background = ContextCompat.getDrawable(
                     context,
                     R.drawable.shape_rounded_containers
@@ -29,7 +31,8 @@ class UpdateUI (
                 tvFirstNumberAnswer,
                 tvTwosNumberAnswer,
                 tvThirdNumberAnswer,
-                tvFourNumberAnswer)) {
+                tvFourNumberAnswer
+            )) {
                 layout.background = ContextCompat.getDrawable(
                     context,
                     R.drawable.shape_rounded_variants
@@ -39,7 +42,8 @@ class UpdateUI (
                 tvFirstVariantAnswer,
                 tvTwosVariantAnswer,
                 tvThirdVariantAnswer,
-                tvFourVariantAnswer)) {
+                tvFourVariantAnswer
+            )) {
                 textView.setTextColor(
                     ContextCompat.getColor(
                         context,
@@ -52,7 +56,8 @@ class UpdateUI (
                 tvFirstNumberAnswer,
                 tvTwosNumberAnswer,
                 tvThirdNumberAnswer,
-                tvFourNumberAnswer)) {
+                tvFourNumberAnswer
+            )) {
                 textView.setTextColor(
                     ContextCompat.getColor(
                         context,
@@ -64,10 +69,14 @@ class UpdateUI (
         }
         binding.correctAnswerContainer.isVisible = false
         binding.wrongContainer.isVisible = false
+        binding.lcFirstcontainer.isClickable = true
+        binding.lcTwoscontainer.isClickable = true
+        binding.lcThirdcontainer.isClickable = true
+        binding.lcFourcontainer.isClickable = true
     }
 
 
-     fun makeCorrectAnswer(correctIndex: Int) {
+    fun makeCorrectAnswer(correctIndex: Int) {
 
         val correctContainers = listOf(
             binding.lcFirstcontainer,
@@ -101,9 +110,14 @@ class UpdateUI (
             )
         )
         binding.correctAnswerContainer.isVisible = true
+        binding.lcFirstcontainer.isClickable = false
+        binding.lcTwoscontainer.isClickable = false
+        binding.lcThirdcontainer.isClickable = false
+        binding.lcFourcontainer.isClickable = false
+
     }
 
-     fun makeWrongAnswer(correctIndex: Int, selectedAnswerIndex: Int) {
+    fun makeWrongAnswer(correctIndex: Int, selectedAnswerIndex: Int) {
 
 
         val correctContainers = listOf(

@@ -26,7 +26,6 @@ class MainActivity : AppCompatActivity() {
         )
         contentManager = ContentManager(
             binding,
-//            this,
             updateUI
         )
         contentManager.setupWordsAndAnswers()

@@ -7,7 +7,6 @@ import kotlin.random.Random
 
 class ContentManager(
     var binding: ActivityLearnWordBinding,
-//     var context: Context,
      var updateUI: UpdateUI
 ) {
 
