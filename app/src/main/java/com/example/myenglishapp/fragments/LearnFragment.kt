@@ -1,33 +1,35 @@
-package com.example.englishapp
+package com.example.myenglishapp.fragments
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import com.example.englishapp.databinding.ActivityLearnWordBinding
-import com.example.myenglishapp.ContentManager
-import com.example.myenglishapp.UpdateUI
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import com.example.englishapp.ContentManager
+import com.example.englishapp.R
+import com.example.englishapp.UpdateUI
+import com.example.englishapp.databinding.FragmentLearnBinding
 
 
-class MainActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityLearnWordBinding
-    lateinit var updateUI: UpdateUI
-
+class LearnFragment : Fragment() {
     lateinit var contentManager: ContentManager
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        binding = ActivityLearnWordBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        updateUI = UpdateUI(
-            this,
-            binding
-        )
-        contentManager = ContentManager(
-            binding,
-            updateUI
-        )
+    lateinit var binding: FragmentLearnBinding
+    lateinit var updateUI: UpdateUI
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_learn, container, false)
+        binding = FragmentLearnBinding.inflate(layoutInflater)
+//        updateUI = UpdateUI(
+//            this,
+//            binding
+//        )
+//        contentManager = ContentManager(
+//            binding,
+//            updateUI
+//        )
         contentManager.setupWordsAndAnswers()
         binding.lcFirstcontainer.setOnClickListener {
             contentManager.chooseRightAnswer(0)
@@ -54,9 +56,7 @@ class MainActivity : AppCompatActivity() {
             contentManager.showNextQuestion()
         }
     }
+
+
+
 }
-
-
-
-
-

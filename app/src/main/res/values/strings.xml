@@ -9,4 +9,10 @@
     <string name="two_answer" translatable="false">Машина</string>
     <string name="first_answer" translatable="false">Груша</string>
     <string name="main_word" translatable="false">PEAR</string>
+    <string name="welcome_text" translatable="false">Hi!
+This is a word-guessing app.
+Click the button to start.</string>
+    <string name="welcomeButton" translatable="false">Continue!</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

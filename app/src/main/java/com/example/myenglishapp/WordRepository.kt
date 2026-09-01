@@ -1,4 +1,4 @@
-package com.example.myenglishapp
+package com.example.englishapp
 
 val questions = listOf(
 

@@ -1,4 +1,4 @@
-package com.example.myenglishapp
+package com.example.englishapp
 
 class WordQuestion (
     val englishWord: String,

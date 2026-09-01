@@ -1,6 +1,5 @@
-package com.example.myenglishapp
+package com.example.englishapp
 
-import android.content.Context
 import com.example.englishapp.databinding.ActivityLearnWordBinding
 import kotlin.random.Random
 

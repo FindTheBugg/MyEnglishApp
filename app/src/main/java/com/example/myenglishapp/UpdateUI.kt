@@ -1,4 +1,4 @@
-package com.example.myenglishapp
+package com.example.englishapp
 
 import android.content.Context
 import androidx.core.content.ContextCompat
@@ -11,6 +11,20 @@ class UpdateUI(
     var context: Context,
     var binding: ActivityLearnWordBinding
 ) {
+
+    fun blockAnswer() {
+        binding.lcFirstcontainer.isClickable = false
+        binding.lcTwoscontainer.isClickable = false
+        binding.lcThirdcontainer.isClickable = false
+        binding.lcFourcontainer.isClickable = false
+    }
+
+    fun unLockAnswer() {
+        binding.lcFirstcontainer.isClickable = true
+        binding.lcTwoscontainer.isClickable = true
+        binding.lcThirdcontainer.isClickable = true
+        binding.lcFourcontainer.isClickable = true
+    }
 
     fun returnDefaultConditionElements() {
 
@@ -69,12 +83,8 @@ class UpdateUI(
         }
         binding.correctAnswerContainer.isVisible = false
         binding.wrongContainer.isVisible = false
-        binding.lcFirstcontainer.isClickable = true
-        binding.lcTwoscontainer.isClickable = true
-        binding.lcThirdcontainer.isClickable = true
-        binding.lcFourcontainer.isClickable = true
+        unLockAnswer()
     }
-
 
     fun makeCorrectAnswer(correctIndex: Int) {
 
@@ -110,15 +120,11 @@ class UpdateUI(
             )
         )
         binding.correctAnswerContainer.isVisible = true
-        binding.lcFirstcontainer.isClickable = false
-        binding.lcTwoscontainer.isClickable = false
-        binding.lcThirdcontainer.isClickable = false
-        binding.lcFourcontainer.isClickable = false
+        blockAnswer()
 
     }
 
     fun makeWrongAnswer(correctIndex: Int, selectedAnswerIndex: Int) {
-
 
         val correctContainers = listOf(
             binding.lcFirstcontainer,
@@ -184,5 +190,6 @@ class UpdateUI(
             )
         )
         binding.wrongContainer.isVisible = true
+        blockAnswer()
     }
 }
