@@ -61,7 +61,4 @@ class LearnFragment : Fragment() {
         }
         return binding.root
     }
-
-
-
 }

@@ -5,4 +5,5 @@
     <color name="correctAnswer">#0EAD69</color>
     <color name="wrongAnswer">#FA4169</color>
     <color name="DefaultColorText">#888992</color>
+    <color name="continueButtonColor">#2574FF</color>
 </resources>
