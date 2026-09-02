@@ -1,15 +1,18 @@
 package com.example.englishapp
 
-import com.example.englishapp.databinding.ActivityLearnWordBinding
+
+import com.example.englishapp.databinding.FragmentLearnBinding
 import kotlin.random.Random
 
 
 class ContentManager(
-    var binding: ActivityLearnWordBinding,
+     var binding: FragmentLearnBinding,
      var updateUI: UpdateUI
 ) {
 
-
+    var randomValueForWords = returnRandomNumberWord()
+    private val currentQuestion
+        get() = questions[randomValueForWords]
     fun showNextQuestion() {
         randomValueForWords = returnRandomNumberWord()
         updateUI.returnDefaultConditionElements()
@@ -18,22 +21,21 @@ class ContentManager(
     fun returnRandomNumberWord(): Int {
         return Random.nextInt(questions.size)
     }
-    var randomValueForWords = returnRandomNumberWord()
+
     fun setupWordsAndAnswers() {
 
         binding.tvMainWord.text = questions[randomValueForWords].englishWord
 
-        binding.tvFirstVariantAnswer.text = questions[randomValueForWords].answers[0]
-        binding.tvTwosVariantAnswer.text = questions[randomValueForWords].answers[1]
-        binding.tvThirdVariantAnswer.text = questions[randomValueForWords].answers[2]
-        binding.tvFourVariantAnswer.text = questions[randomValueForWords].answers[3]
+        binding.tvFirstVariantAnswer.text = currentQuestion.answers[0]
+        binding.tvTwosVariantAnswer.text = currentQuestion.answers[1]
+        binding.tvThirdVariantAnswer.text = currentQuestion.answers[2]
+        binding.tvFourVariantAnswer.text = currentQuestion.answers[3]
     }
 
     fun chooseRightAnswer(selectedAnswerIndex: Int) {
-        questions[randomValueForWords].correctAnswerIndex
 
         val correctAnswerIndex =
-            questions[randomValueForWords].correctAnswerIndex
+            currentQuestion.correctAnswerIndex
 
         if (selectedAnswerIndex == correctAnswerIndex) {
             updateUI.makeCorrectAnswer(selectedAnswerIndex)
@@ -41,7 +43,5 @@ class ContentManager(
             updateUI.makeWrongAnswer(correctAnswerIndex, selectedAnswerIndex)
         }
     }
-
-
 
 }

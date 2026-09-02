@@ -19,17 +19,21 @@ class LearnFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_learn, container, false)
-        binding = FragmentLearnBinding.inflate(layoutInflater)
-//        updateUI = UpdateUI(
-//            this,
-//            binding
-//        )
-//        contentManager = ContentManager(
-//            binding,
-//            updateUI
-//        )
+    ): View {
+
+        binding = FragmentLearnBinding.inflate(
+            inflater,
+            container,
+            false
+        )
+        updateUI = UpdateUI(
+            requireContext(),
+            binding
+        )
+        contentManager = ContentManager(
+            binding,
+            updateUI
+        )
         contentManager.setupWordsAndAnswers()
         binding.lcFirstcontainer.setOnClickListener {
             contentManager.chooseRightAnswer(0)
@@ -44,7 +48,7 @@ class LearnFragment : Fragment() {
             contentManager.chooseRightAnswer(3)
         }
         binding.btExitButton.setOnClickListener {
-            finish()
+            requireActivity().finish()
         }
         binding.skipButton.setOnClickListener {
             contentManager.showNextQuestion()
@@ -55,6 +59,7 @@ class LearnFragment : Fragment() {
         binding.wrongContinueButton.setOnClickListener {
             contentManager.showNextQuestion()
         }
+        return binding.root
     }
 
 

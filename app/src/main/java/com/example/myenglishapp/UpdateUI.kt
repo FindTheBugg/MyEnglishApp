@@ -4,12 +4,12 @@ import android.content.Context
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import com.example.englishapp.R
-import com.example.englishapp.databinding.ActivityLearnWordBinding
+import com.example.englishapp.databinding.FragmentLearnBinding
 
 
 class UpdateUI(
     var context: Context,
-    var binding: ActivityLearnWordBinding
+    var binding: FragmentLearnBinding
 ) {
 
     fun blockAnswer() {

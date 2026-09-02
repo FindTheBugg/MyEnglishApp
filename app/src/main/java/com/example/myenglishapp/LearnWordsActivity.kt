@@ -10,15 +10,11 @@ import com.example.myenglishapp.fragments.StartFragment
 
 class LearnWordsActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityLearnWordBinding
-
-//    lateinit var contentManager: ContentManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        binding = ActivityLearnWordBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_learn_word)
 
         supportFragmentManager
             .beginTransaction()

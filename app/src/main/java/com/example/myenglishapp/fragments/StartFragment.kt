@@ -17,7 +17,7 @@ class StartFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentStartBinding.inflate(layoutInflater)
         val view = inflater.inflate(
             R.layout.fragment_start,
@@ -30,7 +30,7 @@ class StartFragment : Fragment() {
             .addToBackStack(null)
             .commit()
         }
-        return view
+        return binding.root
     }
 
 }
