@@ -16,6 +16,7 @@ class LearnFragment : Fragment() {
     lateinit var contentManager: ContentManager
     lateinit var binding: FragmentLearnBinding
     lateinit var updateUI: UpdateUI
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

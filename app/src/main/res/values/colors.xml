@@ -2,8 +2,11 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="mainBackground"></color>
     <color name="correctAnswer">#0EAD69</color>
     <color name="wrongAnswer">#FA4169</color>
     <color name="DefaultColorText">#888992</color>
-    <color name="continueButtonColor">#2574FF</color>
+    <color name="continueButtonColor">#FFDAB9</color>
+    <color name="progressBarBackground">#A52A2A</color>
+    <color name="ProgressBarProgress">#FFDAB9</color>
 </resources>
