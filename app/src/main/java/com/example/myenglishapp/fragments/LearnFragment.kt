@@ -1,6 +1,7 @@
 package com.example.myenglishapp.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,16 +14,19 @@ import com.example.englishapp.databinding.FragmentLearnBinding
 
 
 class LearnFragment : Fragment() {
-    lateinit var contentManager: ContentManager
-    lateinit var binding: FragmentLearnBinding
-    lateinit var updateUI: UpdateUI
+    private var _binding: FragmentLearnBinding? = null
+    private val binding get() = _binding!!
+    private lateinit var updateUI: UpdateUI
+    private lateinit var contentManager: ContentManager
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
-        binding = FragmentLearnBinding.inflate(
+        Log.d("Lifecycle", "onCreateView")
+
+        _binding = FragmentLearnBinding.inflate(
             inflater,
             container,
             false
@@ -60,6 +64,18 @@ class LearnFragment : Fragment() {
         binding.wrongContinueButton.setOnClickListener {
             contentManager.showNextQuestion()
         }
+        binding.favoriteFragmentButton.setOnClickListener {
+            parentFragmentManager
+                .beginTransaction()
+                .replace(R.id.fragmentContainer, FavoriteFragment())
+                .addToBackStack(null)
+                .commit()
+        }
         return binding.root
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        Log.d("Lifecycle", "onDestroyView")
+        _binding = null
     }
 }

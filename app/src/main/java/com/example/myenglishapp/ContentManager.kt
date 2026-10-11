@@ -2,7 +2,6 @@ package com.example.englishapp
 
 
 import com.example.englishapp.databinding.FragmentLearnBinding
-import com.example.myenglishapp.fragments.LearnFragment
 import kotlin.random.Random
 
 
